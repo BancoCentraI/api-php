@@ -324,25 +324,6 @@ Usar o mesmo token depois → **401**.
 | 401 em rota protegida | Faça login de novo e use o token novo |
 
 ---
-
-## 12. Como apresentar na faculdade (roteiro de ~10 minutos)
-
-1. **Objetivo (1 min)** — "API REST para gerenciar eventos e inscrições, sem frontend, testada pelo Postman."
-2. **Banco de dados (2 min)** — Mostre as duas migrations. Destaque a `unique(user_id, evento_id)` e as chaves estrangeiras.
-3. **Models (1 min)** — Mostre os relacionamentos: User → inscrições, Evento → inscrições, Inscrição → usuário e evento.
-4. **Fluxo de uma requisição (2 min)** — Rota → Form Request (valida) → Controller (regra) → Model (banco) → Resource (JSON).
-5. **Autenticação (1 min)** — Sanctum gera o token no login; as rotas dentro de `auth:sanctum` exigem esse token.
-6. **Demonstração (3 min)** — Rode a coleção no Postman, nesta ordem:
-   - cadastro e login (mostre o token);
-   - criar evento sem nome (erro 422);
-   - inscrição → inscrição duplicada (bloqueada);
-   - evento lotado (bloqueado);
-   - cancelar → vaga volta;
-   - logout → token deixa de funcionar.
-7. **Encerramento** — Mostre o **Collection Runner** com todos os testes verdes.
-
-**Perguntas prováveis do professor:**
-- *Por que não tem coluna de vagas?* — Porque é calculada; assim nunca fica desatualizada.
 - *Onde está a validação?* — Nos Form Requests, em `app/Http/Requests`.
 - *Por que usar Resource?* — Para controlar o JSON e nunca expor a senha.
 - *O que impede inscrição duplicada?* — A verificação no controller e a restrição `unique` no banco.
